@@ -1,0 +1,33 @@
+Para llamar la función, la estructura es la siguiente:
+images_load('Direccion','Base',"Tabla",img_p)
+
+def images_load_id(dir,base,consulta, img_p):
+conexion = sqlite3.connect(base)
+cursor = conexion.cursor()
+cursor.execute(consulta)
+dato = cursor.fetchall()
+images = []
+cant=0
+for dato in datos:
+ result1 = " ".join(str(dato) for dato in dato)
+ result2=result1.replace("None", "")
+ result3=result2.replace(" ", "")
+ dirname = dir,result3
+ result = " ".join(str(dirname) for dirname in dirname)
+ result= result.replace(" ", "/")
+ dirname = result,'.jpg'
+ result = " ".join(str(dirname) for dirname in dirname)
+ result=result.replace(" ", "")
+ for result in result:
+ cont = cont+1
+ if ((cont % 10) == 0): time.sleep(0.1)
+ if ((cont % 250) == 0): time.sleep(10)
+ if ((cont % 1000) == 0): time.sleep(60)
+ image = plt.imread(imgpath)
+ image= resize(image, (img_p, img_p), mode='reflect')
+ images.append(image)
+ print(i)
+ images = np.array(images, dtype=np.float32)
+ tf.config.experimental_run_functions_eagerly(True)
+ tf.maximum(images, 1)
+ X_test = images.astype(np.float32
