@@ -1,0 +1,10 @@
+for j in range(10):
+       model.fit(X_test, X_test, 
+                epochs=50,      
+                batch_size=32)  
+
+
+De la misma manera pueden consultarse las imágenes de entrada para compararse con las de salida, a través del siguiente código dentro del código anterior:
+    pred_j = model.predict(np.expand_dims(X_test[j], axis=0), verbose=0)[0]
+       show_image_row([norm(X_test[j]), norm(pred_j)])
+     return
