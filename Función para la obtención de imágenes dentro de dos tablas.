@@ -1,0 +1,56 @@
+def images(dir1, dir2, base1, base2, table1, table2, img_p):
+ conexion = sqlite3.connect(base1)
+ cursor = conexion.cursor()
+ cursor.execute("SELECT +table1+“.RUN,” +table1+“.CAMCOL”+table1+“.ObjId FROM”+table1+table2+ “where”+ table1+“.ObjId=”+table2+“.ObjId")
+ consulta = cursor.fetchall()
+ conexion2 = sqlite3.connect(base2)
+ cursor2 = conexion2.cursor()
+ cursor2.execute("SELECT +table1+“.RUN,” +table1+“.CAMCOL”+table1+“.ObjId FROM”+table1+table2+ “where”+ table1+“.ObjId=”+table2+“.ObjId")
+ consulta2 = cursor2.fetchall()
+ images = []
+ cont=0
+ cont2=0
+
+ for consulta in consulta:
+    result = " ".join(str(dato) for dato in dato)
+    result=result.replace("None", "")
+    result=result.replace(" ", "")
+    dirname = dir1,result
+    result = " ".join(str(dirname) for dirname in dirname)
+    result= result.replace(" ", "/")
+    dirname = result,'.jpg'
+    result = " ".join(str(dirname) for dirname in dirname)
+    result=result.replace(" ", "")
+    imgpath = result
+ for consulta2 in consulta2:
+    result = " ".join(str(dato) for dato in dato)
+    result=result.replace("None", "")
+    result=result.replace(" ", "")
+    dirname = dir2,result
+    result = " ".join(str(dirname) for dirname in dirname)
+    result= result.replace(" ", "/")
+    dirname = result,'.jpg'
+    result = " ".join(str(dirname) for dirname in dirname)
+    result=result.replace(" ", "")
+ for result in result:
+     cont = cont+1
+     imgpath = result
+     if ((cont % 10) == 0): time.sleep(0.1)
+     if ((cont % 250) == 0): time.sleep(10)
+     if ((cont % 1000) == 0): time.sleep(60)
+     image = plt.imread(imgpath)
+     image= resize(image, (img_p, img_p), mode='reflect')
+     images.append(image)
+     images = np.array(images, dtype=np.float32)
+     X_test = images.astype(np.float32)
+ for result2 in result2:
+     cont2 = cont2+1
+     imgpath2 = result2
+     if ((cont2 % 10) == 0): time.sleep(0.1)
+     if ((cont2 % 250) == 0): time.sleep(10)
+     if ((cont2 % 1000) == 0): time.sleep(60)
+     image2 = plt.imread(imgpath2)
+     image2= resize(image2, (img_p, img_p), mode='reflect')
+     images2.append(image2)
+     images2 = np.array(images2, dtype=np.float32)
+     X_test2 = images.astype(np.float32)
